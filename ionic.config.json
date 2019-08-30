@@ -1,5 +1,7 @@
 {
-  "name": "ridProject",
-  "integrations": {},
+  "name": "TsukiPrj",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

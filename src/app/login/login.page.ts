@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +8,7 @@ import { MenuController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  constructor( public menuCtrl: MenuController ) { }
+  constructor( public menuCtrl: MenuController, private navCtrl: NavController ) { }
 
   // [ Disable SideMenu Template on LoginPage ]
   ionViewWillEnter() {
@@ -16,6 +16,10 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  openSignup() {
+    this.navCtrl.navigateForward('/signup');
   }
 
 }

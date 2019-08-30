@@ -9,48 +9,47 @@
 <ion-content>
   <div class="content">
     <div class="img_logo" text-center>
-      <img src="../../assets/image/facebook-logo.png" />
+      <img src="../../assets/icon/drawable-hdpi-icon.png" />
     </div>
-
     <br>
     <br>
 
-    <!-- [ Content ==================================================== ] -->
+    <!-- [ Content =========================================================== ] -->
     <ion-grid style="padding: 0%;">
       <ion-row size="12">
         <ion-col size="11" class="ion_col_profile" >
           <ion-row size="12">
             <ion-col size="4">
-              <img id="profile_img" src="../../assets/image/profile.jpg" />
+              <img class="profile_img" src="../../assets/icon/drawable-xhdpi-icon.png" />
             </ion-col>
             <ion-col size="8">
               <ion-row> 
-                <p id="name_facebook"> Tosporn Boontarik </p>
+                <p class="name_facebook"> Name Surname </p>
               </ion-row>
             </ion-col>
           </ion-row>
         </ion-col>
         <ion-col size="1" class="ion_col_profile" >
           <p>
-            <ion-icon id="icon_more" slot="end" class="icon_middle" name="more"></ion-icon> 
+            <ion-icon class="more_icon" slot="end" name="more"></ion-icon> 
           </p>
         </ion-col>
       </ion-row>
     </ion-grid>
-    <!-- [ ============================================================ ] -->
+    <!-- [ =========================================================== ] -->
     <hr>
     <ion-grid>
       <ion-row class="ion_row" size="12" >
-        <ion-col size="1" class="col_icon" >
-          <span> <ion-icon slot="start" class="icon_middle" name="add"></ion-icon> </span>
+        <ion-col class="col_icon" size="1" >
+          <span> <ion-icon slot="start" name="add"></ion-icon> </span>
         </ion-col>
         <ion-col size="10" >
           <span> &nbsp; Log Into Another Account </span>
         </ion-col>
       </ion-row>
       <ion-row class="ion_row" size="12" >
-        <ion-col size="1" class="col_icon" >
-          <span> <ion-icon slot="start" class="icon_middle" name="search"></ion-icon> </span>
+        <ion-col class="col_icon" size="1" >
+          <span> <ion-icon slot="start" name="search"></ion-icon> </span>
         </ion-col>
         <ion-col size="10" >
           <span> &nbsp; Find Your Account </span>
@@ -58,14 +57,13 @@
       </ion-row>
     </ion-grid>
 
-    <!-- [ Footer ===================================================== ] -->
+    <!-- [ Footer =========================================================== ] -->
     <div class="sec_bottom">
       <section class="full-width">
-        <ion-button class="btn_bottom" [color]="buttonColor" expand="full" (click)="goToRegister()">
-          CREATE NEW FACEBOOK ACCOUNT
+        <ion-button class="btn_primary" expand="full" (click)="openSignup()">
+          CREATE NEW ACCOUNT
         </ion-button>
       </section>
     </div>
-
   </div>
 </ion-content>

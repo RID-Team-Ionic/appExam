@@ -1,13 +1,6 @@
-// [ First Impression ]
-// ion-menu.hydrated.split-pane-side.md.menu-type-overlay.menu-enabled.menu-side-start.menu-pane-visible {
-// .split-pane-visible>.split-pane-side:not(ion-menu), .split-pane-visible>ion-menu.split-pane-side.menu-enabled {
-//     display: none !important;
-// }
-
-
 // [ Logo ========================================================= ]
 .content {
-    background-color: #4267b2;
+    background-color: #4e5e37;
     height: 100%;
     padding-left: 8.84%;
     padding-right: 8.84%;
@@ -32,28 +25,32 @@
 .hydrated {
     padding: 0%;   
 }
-#profile_img {
+.profile_img {
     height: 60px !important; // 8vh
     width: auto !important;
 }
-#name_facebook {
+.name_facebook {
     margin-top: 23px;
     font-size: 14px;
     color: #f5f5f5;
 }
-#icon_more { 
-    background: #4267b2; 
-    border: 1.45px solid #4267b2;
+.icon_more { 
+    background: #6bafa9; 
+    border: 1.45px solid #6bafa9;
 }
-ion-item { background-color: #355089; }
-hr { border-block-end: 1.45px solid #2b4a81; }
+ion-item { background-color: #6bafa9; }
+hr { border-block-end: 1.45px solid #264f5c; }
 ion-grid, .col_icon { padding: 0%; }
 .ion_row { padding-bottom: 5%; }
 ion-icon {
-    background: #355089;
-    border: 1.45px solid #355089;
+    background: #252f1e;
+    border: 1.45px solid #252f1e;
     font-size: 26px;
     color: #f5f5f5;
+}
+ion-icon.more_icon {
+    background: transparent;
+    border: transparent;
 }
 span {
     font-size: 13px;
@@ -69,12 +66,6 @@ span {
     right: 8%;
     bottom: 5%;
 }
-.btn_bottom {
-    --box-shadow: none;
-    border: 1.45px solid #2b4a81;
-    font-size: 12px;
-    color: white; // #f5f5f5
-    letter-spacing: inherit;
-}
+
 
 
