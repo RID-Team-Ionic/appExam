@@ -28,6 +28,10 @@ $user->fullname = $data['fullname'];
 $user->username = $data['username'];
 $user->password = $data['password'];
 $user->email = $data['email'];
+// $user->fullname = "ชื่อ นามสกุล";
+// $user->username = "user2";
+// $user->password = 123456;
+// $user->email = "test@mail.com";
 
 // Create the user
 if( 

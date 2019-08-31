@@ -6,6 +6,11 @@
     <ion-title>
       List
     </ion-title>
+
+    <ion-button slot="end" class="btn_add" (click)="alertInsert()">
+      add <ion-icon slot="end" name="person-add"></ion-icon>
+    </ion-button>
+
   </ion-toolbar>
 </ion-header>
 
@@ -19,9 +24,15 @@
       </div>
     </ion-item>
   </ion-list>
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
+
+  <!-- <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title }}</b>
+  </div> -->
+
+  <div padding text-center >
+    <ion-button (click)="goBack()">
+      back <ion-icon slot="start" name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </div>
+
 </ion-content>
