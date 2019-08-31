@@ -11,31 +11,31 @@
         <ion-item>
           <span position="floating">Fullname &nbsp;</span>
           <!-- <ion-input type="text" formControlName="fullname"></ion-input> -->
-          <!-- <ion-input ngModel type="text" name="fullname" #fullname="ngModel" required></ion-input> -->
-          <!-- <span class="ion-padding" *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)">
+          <ion-input ngModel type="text" name="fullname" #fullname="ngModel" required></ion-input>
+          <span class="ion-padding" *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)">
             กรุณาป้อนชื่อ-สกุล
-          </!-->
+          </span>
         </ion-item>
         <ion-item>
           <span position="floating">Username &nbsp;</span>
-          <!-- <ion-input ngModel type="text" name="username" #username="ngModel" required></ion-input> -->
-          <!-- <span class="ion-padding" *ngIf="username.invalid && (username.dirty || username.touched)">
+          <ion-input ngModel type="text" name="username" #username="ngModel" required></ion-input>
+          <span class="ion-padding" *ngIf="username.invalid && (username.dirty || username.touched)">
             กรุณาป้อนชื่อผู้ใช้งาน
-          </span> -->
+          </span>
         </ion-item>
         <ion-item>
           <span position="floating">E-mail &nbsp;</span>
-          <!-- <ion-input ngModel type="email" name="email" #email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input> -->
-          <!-- <span class="ion-padding" *ngIf="email.invalid && (email.dirty || email.touched)">
+          <ion-input ngModel type="email" name="email" #email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
+          <span class="ion-padding" *ngIf="email.invalid && (email.dirty || email.touched)">
             กรุณาป้อนอีเมล์ และระบุรูปแบบอีเมล์ให้ถูกต้อง
-          </span> -->
+          </span>
         </ion-item>
         <ion-item>
           <span position="floating">Password &nbsp;</span>
-          <!-- <ion-input ngModel type="password" name="password" #password="ngModel" required minlength="6"></ion-input> -->
-          <!-- <span class="ion-padding" *ngIf="password.invalid && (password.dirty || password.touched)">
+          <ion-input ngModel type="password" name="password" #password="ngModel" required minlength="6"></ion-input>
+          <span class="ion-padding" *ngIf="password.invalid && (password.dirty || password.touched)">
             กรุณาป้อนรหัสผ่าน และรหัสผ่านอย่างน้อย 6 ตัวอักษร
-          </span> -->
+          </span>
         </ion-item>
       </ion-grid>
       <ion-button class="btn_primary" [disabled]="myForm.invalid" size="large" expand="full" (click)="signup(myForm.value)">

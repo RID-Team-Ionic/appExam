@@ -1,4 +1,4 @@
-import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+// import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { async } from '@angular/core/testing';
 import { FeedBack } from './../models/feedback';
 import { AuthService } from './../auth.service';
@@ -13,9 +13,14 @@ import { Component, OnInit } from '@angular/core';
 export class SignupPage implements OnInit {
   feedback: FeedBack;
 
-  constructor( private loadingCtrl: LoadingController, private alertCtrl: AlertController, private navCtrl: NavController, private authService: AuthService, private formControl: FormControl, private formBuilder: FormBuilder ) {
-    
-  }
+  constructor(
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController,
+    private navCtrl: NavController,
+    private authService: AuthService,
+    // private formControl: FormControl,
+    // private formBuilder: FormBuilder 
+    ) { }
 
   ngOnInit() {
   }
