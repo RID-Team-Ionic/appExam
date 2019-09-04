@@ -64,5 +64,45 @@ class User {
             return false; // Tell to create_user page, it can't add
         }
     }
+    
+    // Check if given username exist in the database
+    function userExists() {
+        // Query to check if username exists
+        $query = "SELECT * FROM " . $this->table_name . " WHERE userName = ? LIMIT 0,1 ";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($query);
+
+        // Sanitize
+        // htmlspecialchars แปลงตัวอักษรที่มีผลต่อ tag html ให้แสดงเป็นข้อความปกติ เช่น '&' เป็น '&'
+        // strip_tags ลบแท็ก HTML และ PHP ออกจากข้อความสตริง
+        $this->username=htmlspecialchars(strip_tags($this->username));
+
+        // Bind given username value
+        $stmt->bindParam(1, $this->username);
+
+        // Execute the query
+        $stmt->execute();
+
+        // Get number of rows
+        $num = $stmt->rowCount();
+
+        // If username exists, assign values to object properties for easy access and use for php sessions
+        if($num>0) {    
+            // Get record details / values
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Assign values to object properties
+            $this->userid = $row['userID'];
+            $this->fullname = $row['fullName'];
+            $this->password = $row['password'];
+            $this->email = $row['email'];
+
+            // Return true because username exists in the database
+            return true;
+        }
+        // Return false if username does not exist in the database
+        return false;
+    }
 }
 ?>

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Log Into Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="loginForm">
+      <ion-item>
+        <span position="floating">Username &nbsp;</span>
+        <ion-input type="text" formControlName="username"></ion-input>
+
+        <div class="validators_messages">
+          <ng-container *ngFor="let error of validators_messages.username">
+            <div class="validators_messages" *ngIf="loginForm.get('username').hasError(error.type) && (loginForm.get('username').dirty || loginForm.get('username').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
+      </ion-item>
+      <ion-item>
+        <span position="floating">Password &nbsp;</span>
+        <ion-input type="text" formControlName="password"></ion-input>
+
+        <div class="validators_messages">
+          <ng-container *ngFor="let error of validators_messages.password">
+            <div class="validators_messages" *ngIf="loginForm.get('password').hasError(error.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
+      </ion-item>
+    <ion-button class="btn_primary" [disabled]="loginForm.invalid" size="large" expand="full" (click)="login(loginForm.value)">
+      LOG IN
+    </ion-button>
+  </form>
+  <div class="text_mini handle_hover" (click)="openForgot()">Forgot your password</div>
+  <hr>
+  <ion-button class="btn_primary" color="danger" size="large" expand="full" (click)="goBack()">Back</ion-button>
+</ion-content>

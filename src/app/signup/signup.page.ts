@@ -12,16 +12,62 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupPage implements OnInit {
   feedback: FeedBack;
+  signupForm: FormGroup;
 
-  constructor( private loadingCtrl: LoadingController, private alertCtrl: AlertController, private navCtrl: NavController, private authService: AuthService, private formControl: FormControl, private formBuilder: FormBuilder ) {
-    
+  validators_messages = {
+    'fullname': [
+      {type: 'required', message: ' Fullname is required.'}
+    ],
+    'username': [
+      {type: 'required', message: ' Username is required.'},
+      {type: 'pattern', message: ' Please use english language.'}
+    ],
+    'email': [
+      {type: 'required', message: ' E-mail is required.'},
+      {type: 'pattern', message: ' Not E-mail.'}
+    ],
+    'password': [
+      {type: 'required', message: ' Password is required.'},
+      {type: 'minlength', message: ' Need at least 8 characters in password.'}
+    ]
   }
+
+  constructor( private loadingCtrl: LoadingController, 
+    private alertCtrl: AlertController, 
+    private navCtrl: NavController, 
+    private authService: AuthService,
+    private formBuilder: FormBuilder) {
+      // Reactive Forms Validation. 
+      this.signupForm = this.formBuilder.group({
+        fullname: ['', [
+          Validators.required
+          ]
+        ],
+        username: ['', [
+          Validators.required,
+          Validators.pattern('^[a-zA-Z]+$')
+          ]
+        ],
+        email: ['', [
+          Validators.required,
+          Validators.email
+          ]
+        ],
+        password: new FormControl('', Validators.compose([
+          Validators.required,
+          Validators.minLength(8)
+        ]))
+      });
+    }
 
   ngOnInit() {
   }
 
-  async signup(form: any) {
+  goBack() {
+    this.navCtrl.navigateBack('login');
+  }
 
+  async signup(form: any) {
     // Get Data from myForm
     const fullname = form.fullname;
     const username = form.username;

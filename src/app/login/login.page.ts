@@ -18,8 +18,11 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  openLoginto() {
+    this.navCtrl.navigateForward('/loginto');
+  }
+
   openSignup() {
     this.navCtrl.navigateForward('/signup');
   }
-
 }

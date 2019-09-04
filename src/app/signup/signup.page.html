@@ -5,42 +5,59 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form novalidate #myForm="ngForm">
-    <ion-list>
-      <ion-grid>
+  <form [formGroup]="signupForm">
         <ion-item>
           <span position="floating">Fullname &nbsp;</span>
-          <!-- <ion-input type="text" formControlName="fullname"></ion-input> -->
-          <!-- <ion-input ngModel type="text" name="fullname" #fullname="ngModel" required></ion-input> -->
-          <!-- <span class="ion-padding" *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)">
-            กรุณาป้อนชื่อ-สกุล
-          </!-->
+          <ion-input type="text" formControlName="fullname"></ion-input>
+
+          <div class="validators_messages">
+            <ng-container *ngFor="let error of validators_messages.fullname">
+              <div class="validators_messages" *ngIf="signupForm.get('fullname').hasError(error.type) && (signupForm.get('fullname').dirty || signupForm.get('fullname').touched)">
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
         </ion-item>
         <ion-item>
           <span position="floating">Username &nbsp;</span>
-          <!-- <ion-input ngModel type="text" name="username" #username="ngModel" required></ion-input> -->
-          <!-- <span class="ion-padding" *ngIf="username.invalid && (username.dirty || username.touched)">
-            กรุณาป้อนชื่อผู้ใช้งาน
-          </span> -->
+          <ion-input type="text" formControlName="username"></ion-input>
+
+          <div class="validators_messages">
+            <ng-container *ngFor="let error of validators_messages.username">
+              <div class="validators_messages" *ngIf="signupForm.get('username').hasError(error.type) && (signupForm.get('username').dirty || signupForm.get('username').touched)">
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
         </ion-item>
         <ion-item>
           <span position="floating">E-mail &nbsp;</span>
-          <!-- <ion-input ngModel type="email" name="email" #email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input> -->
-          <!-- <span class="ion-padding" *ngIf="email.invalid && (email.dirty || email.touched)">
-            กรุณาป้อนอีเมล์ และระบุรูปแบบอีเมล์ให้ถูกต้อง
-          </span> -->
+          <ion-input type="text" formControlName="email"></ion-input>
+
+          <div class="validators_messages">
+            <ng-container *ngFor="let error of validators_messages.email">
+              <div class="validators_messages" *ngIf="signupForm.get('email').hasError(error.type) && (signupForm.get('email').dirty || signupForm.get('email').touched)">
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
         </ion-item>
         <ion-item>
           <span position="floating">Password &nbsp;</span>
-          <!-- <ion-input ngModel type="password" name="password" #password="ngModel" required minlength="6"></ion-input> -->
-          <!-- <span class="ion-padding" *ngIf="password.invalid && (password.dirty || password.touched)">
-            กรุณาป้อนรหัสผ่าน และรหัสผ่านอย่างน้อย 6 ตัวอักษร
-          </span> -->
+          <ion-input type="text" formControlName="password"></ion-input>
+
+          <div class="validators_messages">
+            <ng-container *ngFor="let error of validators_messages.password">
+              <div class="validators_messages" *ngIf="signupForm.get('password').hasError(error.type) && (signupForm.get('password').dirty || signupForm.get('password').touched)">
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
         </ion-item>
-      </ion-grid>
-      <ion-button class="btn_primary" [disabled]="myForm.invalid" size="large" expand="full" (click)="signup(myForm.value)">
-          CREATE ACCOUNT
+      <ion-button class="btn_primary" [disabled]="signupForm.invalid" size="large" expand="full" (click)="signup(signupForm.value)">
+        CREATE ACCOUNT
       </ion-button>
-    </ion-list>
   </form>
+  <hr>
+  <ion-button class="btn_primary" color="danger" size="large" expand="full" (click)="goBack()">Back</ion-button>
 </ion-content>

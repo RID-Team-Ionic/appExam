@@ -2,7 +2,7 @@
 // Response => Frontend
 
 // Required headers
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost:8100");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Max-Age: 3600");
@@ -37,17 +37,11 @@ if(
     !empty($user->email) && 
     $user->create()
 ) {
-    // Set response code
-    http_response_code(200);
-
     // Display message: user was created
     echo json_encode(array("status" => "ok", "message" => "User was created."));
 }
 // message if unable to create user
 else {
-    // Set response code
-    http_response_code(400);
-
     // Display message: unable to create user
     echo json_encode(array("status" => "error","message" => "Unable to create user."));
 }
