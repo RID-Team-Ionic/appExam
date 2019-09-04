@@ -5,7 +5,9 @@ include_once 'config/database.php';
 $database = new Database();
 $db = $database->getConnection();
 
-// $user->create()
+$query = " SELECT * FROM lesson ";
+$stmt = $this->conn->prepare($query_0);
+$stmt->execute();
 
 // if(  ) {
 //     http_response_code(200);

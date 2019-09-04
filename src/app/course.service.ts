@@ -10,7 +10,7 @@ import { Course } from './models/course';
 export class CourseService {
   // [ Example json service ]
   // apiUrl = 'https://codingthailand.com/api/get_courses.php';
-  apiUrl = 'http://localhost/@work/examIonic/appExam/ionic4api/auth/api/get_courses.php';
+  apiUrl = 'http://localhost/@work/examIonic/appExam/ionic4api/api/get_courses.php';
 
   constructor(private http: HttpClient) { }
 
