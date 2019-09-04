@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  apiUrl = 'http://localhost/appExam/ionic4api/auth/api/create_user.php';
+  apiUrl = 'http://localhost/@work/examIonic/appExam/ionic4api/api/create_user.php';
 
   constructor(private http: HttpClient) { }
 

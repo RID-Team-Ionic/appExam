@@ -1,4 +1,4 @@
-// import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { async } from '@angular/core/testing';
 import { FeedBack } from './../models/feedback';
 import { AuthService } from './../auth.service';
@@ -14,7 +14,6 @@ export class SignupPage implements OnInit {
   feedback: FeedBack;
   signupForm: FormGroup;
 
-<<<<<<< HEAD
   validators_messages = {
     'fullname': [
       {type: 'required', message: ' Fullname is required.'}
@@ -32,16 +31,6 @@ export class SignupPage implements OnInit {
       {type: 'minlength', message: ' Need at least 8 characters in password.'}
     ]
   }
-=======
-  constructor(
-    private loadingCtrl: LoadingController,
-    private alertCtrl: AlertController,
-    private navCtrl: NavController,
-    private authService: AuthService,
-    // private formControl: FormControl,
-    // private formBuilder: FormBuilder 
-    ) { }
->>>>>>> pure
 
   constructor( private loadingCtrl: LoadingController, 
     private alertCtrl: AlertController, 

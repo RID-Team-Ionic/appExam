@@ -8,7 +8,6 @@
   <form [formGroup]="signupForm">
         <ion-item>
           <span position="floating">Fullname &nbsp;</span>
-<<<<<<< HEAD
           <ion-input type="text" formControlName="fullname"></ion-input>
 
           <div class="validators_messages">
@@ -45,7 +44,7 @@
         </ion-item>
         <ion-item>
           <span position="floating">Password &nbsp;</span>
-          <ion-input type="text" formControlName="password"></ion-input>
+          <ion-input type="password" formControlName="password"></ion-input>
 
           <div class="validators_messages">
             <ng-container *ngFor="let error of validators_messages.password">
@@ -54,34 +53,6 @@
               </div>
             </ng-container>
           </div>
-=======
-          <!-- <ion-input type="text" formControlName="fullname"></ion-input> -->
-          <ion-input ngModel type="text" name="fullname" #fullname="ngModel" required></ion-input>
-          <span class="ion-padding" *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)">
-            กรุณาป้อนชื่อ-สกุล
-          </span>
-        </ion-item>
-        <ion-item>
-          <span position="floating">Username &nbsp;</span>
-          <ion-input ngModel type="text" name="username" #username="ngModel" required></ion-input>
-          <span class="ion-padding" *ngIf="username.invalid && (username.dirty || username.touched)">
-            กรุณาป้อนชื่อผู้ใช้งาน
-          </span>
-        </ion-item>
-        <ion-item>
-          <span position="floating">E-mail &nbsp;</span>
-          <ion-input ngModel type="email" name="email" #email="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"></ion-input>
-          <span class="ion-padding" *ngIf="email.invalid && (email.dirty || email.touched)">
-            กรุณาป้อนอีเมล์ และระบุรูปแบบอีเมล์ให้ถูกต้อง
-          </span>
-        </ion-item>
-        <ion-item>
-          <span position="floating">Password &nbsp;</span>
-          <ion-input ngModel type="password" name="password" #password="ngModel" required minlength="6"></ion-input>
-          <span class="ion-padding" *ngIf="password.invalid && (password.dirty || password.touched)">
-            กรุณาป้อนรหัสผ่าน และรหัสผ่านอย่างน้อย 6 ตัวอักษร
-          </span>
->>>>>>> pure
         </ion-item>
       <ion-button class="btn_primary" [disabled]="signupForm.invalid" size="large" expand="full" (click)="signup(signupForm.value)">
         CREATE ACCOUNT
