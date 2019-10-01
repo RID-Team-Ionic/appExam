@@ -1,3 +1,5 @@
+import { AuthService } from './../auth.service';
+import { Storage } from '@ionic/storage';
 import { Component, OnInit } from '@angular/core';
 import { MenuController, NavController } from '@ionic/angular';
 
@@ -7,12 +9,14 @@ import { MenuController, NavController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
-  constructor( public menuCtrl: MenuController, private navCtrl: NavController ) { }
-
-  // [ Disable SideMenu Template on LoginPage ]
-  ionViewWillEnter() {
+  constructor( public menuCtrl: MenuController,
+          private navCtrl: NavController,
+          private storage: Storage,
+          private authService: AuthService ) {
+    // [ Disable SideMenu Template on LoginPage ]
     this.menuCtrl.enable(false);
+
+    this.authService.checkCode('loginPage');
   }
 
   ngOnInit() {
