@@ -1,4 +1,4 @@
-import { LoadingController, AlertController, NavController } from '@ionic/angular';
+import { MenuController, LoadingController, AlertController, NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgotPage implements OnInit {
 
-  constructor(private navCtrl: NavController) { }
+  constructor(public menuCtrl: MenuController, private navCtrl: NavController) {
+    this.menuCtrl.enable(false);
+  }
 
   ngOnInit() {
   }

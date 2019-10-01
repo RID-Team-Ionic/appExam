@@ -2,7 +2,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { async } from '@angular/core/testing';
 import { FeedBack } from './../models/feedback';
 import { AuthService } from './../auth.service';
-import { LoadingController, AlertController, NavController } from '@ionic/angular';
+import { MenuController, LoadingController, AlertController, NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -32,35 +32,36 @@ export class SignupPage implements OnInit {
     ]
   }
 
-  constructor( private loadingCtrl: LoadingController, 
+  constructor( public menuCtrl: MenuController, private loadingCtrl: LoadingController, 
     private alertCtrl: AlertController, 
     private navCtrl: NavController, 
     private authService: AuthService,
     private formBuilder: FormBuilder) {
-      // Reactive Forms Validation. 
-      this.signupForm = this.formBuilder.group({
-        fullname: ['', [
-          Validators.required
-          ]
-        ],
-        username: ['', [
-          Validators.required,
-          Validators.pattern('^[a-zA-Z]+$')
-          ]
-        ],
-        email: ['', [
-          Validators.required,
-          Validators.email
-          ]
-        ],
-        password: new FormControl('', Validators.compose([
-          Validators.required,
-          Validators.minLength(8)
-        ]))
-      });
+      this.menuCtrl.enable(false);
     }
 
   ngOnInit() {
+    // Reactive Forms Validation. 
+    this.signupForm = this.formBuilder.group({
+      fullname: ['', [
+        Validators.required
+        ]
+      ],
+      username: ['', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z]+$')
+        ]
+      ],
+      email: ['', [
+        Validators.required,
+        Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$')
+        ]
+      ],
+      password: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.minLength(8)
+      ]))
+    });
   }
 
   goBack() {

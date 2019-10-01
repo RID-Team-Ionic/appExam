@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Account Update</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="updateForm">
+    <ion-item>
+      <span position="floating">Fullname &nbsp;</span>
+      <ion-input type="text" formControlName="fullname" value="{{fullname}}"></ion-input>
+
+      <div class="validators_messages">
+        <ng-container *ngFor="let error of validators_messages.fullname">
+          <div class="validators_messages" *ngIf="updateForm.get('fullname').hasError(error.type) && (updateForm.get('fullname').dirty || updateForm.get('fullname').touched)">
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div>
+    </ion-item>
+    <ion-item>
+      <span position="floating">Username &nbsp;</span>
+      <ion-input type="text" formControlName="username" value="{{username}}"></ion-input>
+
+      <div class="validators_messages">
+        <ng-container *ngFor="let error of validators_messages.username">
+          <div class="validators_messages" *ngIf="updateForm.get('username').hasError(error.type) && (updateForm.get('username').dirty || updateForm.get('username').touched)">
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div>
+    </ion-item>
+    <ion-item>
+      <span position="floating">E-mail &nbsp;</span>
+      <ion-input type="text" formControlName="email" value="{{email}}"></ion-input>
+
+      <div class="validators_messages">
+        <ng-container *ngFor="let error of validators_messages.email">
+          <div class="validators_messages" *ngIf="updateForm.get('email').hasError(error.type) && (updateForm.get('email').dirty || updateForm.get('email').touched)">
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div>
+    </ion-item>
+    <ion-item>
+      <span position="floating">Password &nbsp;</span>
+      <ion-input type="password" formControlName="password"></ion-input>
+
+      <!-- <div class="validators_messages">
+        <ng-container *ngFor="let error of validators_messages.password">
+          <div class="validators_messages" *ngIf="updateForm.get('password').hasError(error.type) && (updateForm.get('password').dirty || updateForm.get('password').touched)">
+            {{ error.message }}
+          </div>
+        </ng-container>
+      </div> -->
+    </ion-item>
+    <ion-button class="btn_primary" [disabled]="updateForm.invalid" size="large" expand="full" (click)="update(updateForm.value)">
+      UPDATE ACCOUNT
+    </ion-button>
+  </form>
+  <hr>
+  <ion-button class="btn_primary" color="danger" size="large" expand="full" (click)="goBack()">Back</ion-button>
+</ion-content>

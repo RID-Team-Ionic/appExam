@@ -1,5 +1,9 @@
+import { Storage } from '@ionic/storage';
+import { FeedBack } from './../models/feedback';
+import { async } from '@angular/core/testing';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { LoadingController, AlertController, NavController } from '@ionic/angular';
+import { MenuController, LoadingController, AlertController, NavController } from '@ionic/angular';
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./loginto.page.scss'],
 })
 export class LogintoPage implements OnInit {
+  feedback: FeedBack;
   loginForm: FormGroup;
 
   validators_messages = {
@@ -19,11 +24,17 @@ export class LogintoPage implements OnInit {
     ]
   }
 
-  constructor(private loadingCtrl: LoadingController,
+  constructor(public menuCtrl: MenuController, private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private navCtrl: NavController,
-    private formBuilder: FormBuilder  
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private storage: Storage  
   ) {
+    this.menuCtrl.enable(false);
+  }
+
+  ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', [
         Validators.required
@@ -36,11 +47,8 @@ export class LogintoPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
-
   openForgot() {
-    this.navCtrl.navigateForward('forgot');
+    this.navCtrl.navigateForward('/forgot');
   }
 
   goBack() {
@@ -56,5 +64,43 @@ export class LogintoPage implements OnInit {
       message: 'Loading ...'
     });
     await loading.present();
+
+    // Use Service AuthService and Login Method
+    this.authService.login(username, password).subscribe(
+      async (feedback: FeedBack) => {
+        this.feedback = feedback; // Get FeedBack from (Backend)
+
+        if (this.feedback.status === 'ok' ) {
+          const alert = await this.alertCtrl.create({
+            message: this.feedback.message,
+            buttons: [{
+              text: 'OK',
+              handler: () => {
+                // Set JWT
+                this.storage.ready().then(() => { // ถ้า Platform พร้อมใช้งาน
+                  this.storage.set('code', this.feedback.jwt);
+                  // Go to Home Page
+                  location.replace('/home');
+                });
+              }
+            }]
+          });
+          await alert.present();
+        } else {
+          const alert = await this.alertCtrl.create({
+            message: this.feedback.message,
+            buttons: ['OK']
+          });
+          await alert.present();
+        }
+      },
+      async (error) => {
+        console.log(error);
+        await loading.dismiss();
+      },
+      async () => {
+        await loading.dismiss();
+      }
+    );
   }
 }

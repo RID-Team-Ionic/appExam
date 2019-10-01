@@ -6,7 +6,7 @@ class User {
     private $table_name = "users";
 
     // Object properties
-    public $id;
+    public $userid;
     public $fullname;
     public $username;
     public $password;
@@ -102,6 +102,50 @@ class User {
             return true;
         }
         // Return false if username does not exist in the database
+        return false;
+    }
+
+    // Update a user record
+    public function update() {
+        // If password needs to be updated
+        $password_set=!empty($this->password) ? ", password = :password" : "";
+
+        // If no posted password, do not update the password
+        $query = "UPDATE " . $this->table_name . "
+            SET 
+            fullName = :fullname,
+            userName = :username,
+            email = :email
+            {$password_set}
+            WHERE userID = :userid";
+
+        // Prepare the query
+        $stmt = $this->conn->prepare($query);
+
+        // Sanitize
+        $this->fullname=htmlspecialchars(strip_tags($this->fullname));
+        $this->username=htmlspecialchars(strip_tags($this->username));
+        $this->email=htmlspecialchars(strip_tags($this->email));
+
+        // Bind the values from the form
+        $stmt->bindParam(':fullname', $this->fullname);
+        $stmt->bindParam(':username', $this->username);
+        $stmt->bindParam(':email', $this->email);
+
+        // Hash the password before saving to database
+        if(!empty($this->password)) {
+            $this->password=htmlspecialchars(strip_tags($this->password));
+            $password_hash = password_hash($this->password, PASSWORD_BCRYPT);
+            $stmt->bindParam(':password', $password_hash);
+        }
+
+        // Unique ID of record to be edited
+        $stmt->bindParam(':userid', $this->userid);
+
+        // Execute the query
+        if($stmt->execute()) {
+            return true;
+        }
         return false;
     }
 }

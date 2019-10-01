@@ -1,6 +1,6 @@
 <?php 
 // Required headers
-header("Access-Control-Allow-Origin: http://localhost:8100");
+header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Max-Age: 3600");
@@ -19,14 +19,6 @@ $user = new User($db);
 
 // Get posted data
 $data = json_decode(file_get_contents("php://input"), true);
-// === Test ===
-// $data = new class{};
-// $data->password = '88888888'; 
-
-$data->password = $data['password'];
-
-// === Test ===
-// $user->username = 'pure';
 
 // Set product property values
 $user->username = $data['username'];
@@ -44,7 +36,7 @@ use \Firebase\JWT\JWT;
 // Generate jwt will be here
 // Check if username exists and if password is correct
 // password_verify ( string $password , string $hash )
-if($user_exists && password_verify($data->password, $user->password)) {
+if($user_exists && password_verify($data['password'], $user->password)) {
     $token = array(
         // Payload or JWT Claim = เก็บข้อมูลที่ต้องการส่งไปใน Token, Registered claim
         // – iss (issuer) : เว็บหรือบริษัทเจ้าของ token
@@ -74,6 +66,7 @@ if($user_exists && password_verify($data->password, $user->password)) {
     $jwt = JWT::encode($token, $key);
     echo json_encode(
         array(
+            'status' => 'ok',
             'message' => 'Successful login.',
             'jwt' => $jwt
         )
@@ -84,7 +77,8 @@ if($user_exists && password_verify($data->password, $user->password)) {
 
     // Tell the user login failed
     echo json_encode(
-        array(
+        array( 
+            'status' => 'error',
             'message' => 'Login failed.'
         )
     );
